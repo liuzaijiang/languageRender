@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<style type="text/css">
+	.unitDiv {
+	    height: 25px;
+	    padding-top: 2px;
+	    padding-bottom: 2px;
+	    border: 0;
+	}
+
+	.label_cn{
+		float: left;
+		width:120px;
+	}
+
+	.input_cn{
+		float: left;
+		margin-left: 10px;
+		width:150px;
+	}
+
+	.label_en{
+		float: left;
+		width:185px;
+	}
+
+	.input_en{
+		float: left;
+		margin-left: 10px;
+		width:150px;
+	}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-title="languageData.lab.a"inf-text="languageData.lab.a"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-text="languageData.lab.b"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-text="languageData.lab.c"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-text="languageData.lab.d"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-text="languageData.lab.e"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+		<div class="unitDiv">
+			<label inf-class="labelClass" inf-text="languageData.lab.f"></label>
+			<input inf-class="inputClass" type="text" inf-value="inputClass">
+		</div>
+	</div>
+	<div id="app2">
+		<select>
+			<option value="0" inf-text='languageData.sel.g'></option>
+			<option value="1" inf-text='languageData.sel.h'></option>
+		</select>
+	</div>
+
+	<script type="text/javascript" src="languageData.js"></script>
+	<script type="text/javascript" src="languageRender.js"></script>
+	<script>
+		
+		var d1=new Date();
+		var lan=0;
+		var languageObj=getLanguage('module1',lan);
+		new languageRender({
+			el: ['app','app2'],
+			data: {
+				languageData: languageObj,
+				labelClass:['label_en','label_cn'][lan],
+				inputClass:['input_en','input_cn'][lan]
+			},
+			beforeRender:function(){
+				this.data.languageData.lab.a=['BLC','白平衡'][lan]
+			}
+		})
+		var d2=new Date()
+		console.log(d2.getTime()-d1.getTime())
+
+		
+	</script>
+</body>
+</html>
