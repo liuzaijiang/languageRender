@@ -67,28 +67,32 @@
 			<option value="1" inf-text='languageData.sel.h'></option>
 		</select>
 	</div>
+	<select  id="switch">
+		<option value=0 selected>英文</option>
+		<option value=1>中文</option>
+	</select>
 
 	<script type="text/javascript" src="languageData.js"></script>
 	<script type="text/javascript" src="languageRender.js"></script>
 	<script>
 		
-		var d1=new Date();
-		var lan=0;
-		var languageObj=getLanguage('module1',lan);
-		new languageRender({
+		var lan=document.getElementById('switch').value;
+		var languageObj=getLanguage('module1');
+		var languageRenderCtx=new languageRender({
 			el: ['app','app2'],
+			lan:lan,
 			data: {
 				languageData: languageObj,
-				labelClass:['label_en','label_cn'][lan],
-				inputClass:['input_en','input_cn'][lan]
+				labelClass:['label_en','label_cn'],
+				inputClass:['input_en','input_cn']
 			},
 			beforeRender:function(){
-				this.data.languageData.lab.a=['BLC','白平衡'][lan]
+				this.option.data.languageData.lab.a=['BLC:','白平衡:']
 			}
 		})
-		var d2=new Date()
-		console.log(d2.getTime()-d1.getTime())
-
+		document.getElementById('switch').onchange=function(){
+			languageRenderCtx.setLan(Number(this.value))
+		}
 		
 	</script>
 </body>
